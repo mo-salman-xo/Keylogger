@@ -1,69 +1,117 @@
-# Keylogger Project
+# 🔐 Security Awareness & Keylogging Simulation Tool
 
-This project implements a keylogger in Python that captures keystrokes along with the active window title on macOS. It logs this information to a file (`keylog.txt`) and starts only after verifying a username. The project is meant for educational purposes, highlighting the potential risks of unauthorized keylogging.
+This project is a **cybersecurity awareness tool** that simulates keylogging attacks for educational purposes.
+It securely logs keystrokes, encrypts them, and provides a **Flask-based SIEM-style dashboard** to analyze, search, and flag sensitive inputs in real time.
 
-## Features
+⚠️ **Disclaimer:** This project is strictly for **educational and security awareness purposes**. Unauthorized use of keyloggers is illegal.
 
-- Logs all keystrokes along with the currently active window/application title.
-- Retrieves the IP address of the system at the start of logging.
-- Only starts keylogging if the correct username (`SALMAN`) is provided.
-- Saves the logs in `keylog.txt` file with timestamps.
-- Supports special keys such as `Space`, `Enter`, `Backspace`, etc.
+---
 
-## Requirements
+## ✨ Features
 
-- Python 3.x
-- `pynput` module for keyboard events
-- macOS (due to AppleScript used to fetch the active window)
+* ✅ **Cross-Platform Keylogger** (macOS, Windows, Linux) using `pynput`
+* ✅ **AES Encrypted Logs** stored in **SQLite** with `cryptography`
+* ✅ **Web Dashboard (Flask)**:
+  * Real-time log viewer (auto-refresh every 5 seconds)
+  * Search & filter by app/keyword
+  * 🚨 Sensitive keyword detection & highlighting
+  * Toggle to view **only sensitive logs**
+* ✅ **Resilient Design**: Handles anomalies like fast typing & backspace edits
+* ✅ **Practical Use Case**: Demonstrates how **SIEM dashboards** monitor sensitive user actions
 
-### Install Dependencies
+---
 
-1. Install `pynput` for handling keyboard inputs:
-
-    ```bash
-    pip install pynput
-    ```
-
-## Code Overview
-
-- Logging Setup: All keystroke events and active window titles are logged with timestamps into `keylog.txt`.
-- Keylogger Execution: Once the correct username is provided, the keylogger starts and captures keystrokes continuously.
-- Exit Keylogger: The program continues logging indefinitely until it's manually terminated (for example, with `Ctrl+C` in the terminal).
-
-## Running the Program
-
-1. Clone or download the script to your local machine.
-2. Ensure that Python and dependencies (like `pynput`) are installed.
-3. Run the script:
-
-    ```bash
-    python keylogger.py
-    ```
-
-4. Enter the username when prompted (`SALMAN` is required to start the logger).
-5. The program will log keystrokes along with the active application window to `keylog.txt` in the script’s directory.
-
-## Example Log Output
-
-Here’s what the log might look like:
+## 📂 Project Structure
 
 ```
-2024-10-10 12:45:23: [Safari | h]
-2024-10-10 12:45:23: [Safari | e]
-2024-10-10 12:45:24: [Safari | l]
-2024-10-10 12:45:24: [Safari | l]
-2024-10-10 12:45:24: [Safari | o]
-2024-10-10 12:45:25: [Safari | <Key.enter>]
-2024-10-10 12:45:25: [Notes | <Key.space>]
+Keylogger_Project/
+│── keylogger.py        # Main keylogger (captures keystrokes & logs securely)
+│── logger_utils.py     # Encryption & SQLite helper functions
+│── web_viewer.py       # Flask dashboard (log analysis & visualization)
+│── requirements.txt    # Dependencies
+│── logs.db             # Encrypted log database (auto-created at runtime)
+│── secret.key          # AES encryption key (auto-generated on first run)
 ```
 
-## Limitations
+---
 
-- The keylogger is **macOS specific** due to the use of AppleScript for fetching the active window.
-- The program will not run if the username provided is incorrect.
-  
-## Disclaimer
+## 🚀 Setup & Installation
 
-Unauthorized use of keyloggers is illegal and unethical. Always ensure you have permission before deploying any monitoring tools like this keylogger.
+### 1️⃣ Clone Repository
 
+```bash
+git clone https://github.com/your-username/keylogger-project.git
+cd keylogger-project
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+pip install flask
+```
+
+### 3️⃣ Run Keylogger
+
+```bash
+python3 keylogger.py
+```
+
+* Enter username: `SALMAN`
+* Type in any app (Chrome, Notes, etc.)
+* Quit with **Esc**
+
+### 4️⃣ Run Web Dashboard
+
+```bash
+python3 web_viewer.py
+```
+
+Visit 👉 **[http://127.0.0.1:5000](http://127.0.0.1:5000)**
+
+* Logs auto-refresh every 5s
+* Sensitive keystrokes (`password`, `card`, `login`, etc.) flagged in red
+* Toggle **Sensitive Only** to filter risky logs
+
+---
+
+## 🔎 Sensitive Keywords
+
+The system flags keystrokes that form sensitive words such as:
+
+* **Authentication** → `password`, `login`, `user`, `username`
+* **Financial** → `card`, `credit`, `debit`, `cvv`, `pin`, `upi`, `bank`, `account`
+* **Personal Identifiers** → `email`, `phone`, `mobile`, `aadhaar`
+* **Security Tokens** → `otp`, `token`, `key`, `secret`
+
+---
+
+## 📸 Demo Preview
+
+Here’s a sample mockup of the web dashboard:
+<img width="1465" height="845" alt="Screenshot 2025-09-03 at 2 26 48 PM" src="https://github.com/user-attachments/assets/a4de8e7e-e501-4be2-8171-e9b8169a01ad" />
+<img width="1465" height="845" alt="Screenshot 2025-09-03 at 2 27 10 PM" src="https://github.com/user-attachments/assets/e29957d6-53bd-414b-b10d-4cfb32076d95" />
+<img width="1465" height="845" alt="Screenshot 2025-09-03 at 2 27 18 PM" src="https://github.com/user-attachments/assets/d6480055-804d-4a16-baf2-91eb46860119" />
+
+---
+
+## 👨‍💻 About the Author
+
+**Mohammad Salman Ali**
+Final Year B.Tech – Computer Science & Engineering
+National Institute of Technology, Durgapur
+
+* 🎓 **Google Cybersecurity Professional Certificate**
+* 🛡️ Aspiring **Security Analyst** with focus on SIEM, IDS, vulnerability assessment
+* 📊 Led **AI/ML & Cybersecurity workshops** (Centre for Cognitive Activities, NIT Durgapur)
+* 🎭 Leadership roles in **RECSTACY & AAROHAN** (flagship fests of NIT Durgapur)
+* 🏅 CBSE Chemistry Topper (Oman), Inter-NIT Handball Vice Captain
+
+🔗 [LinkedIn](https://www.linkedin.com/in/mohdsalmanali/)
+🔗 [GitHub](https://github.com/mo-salman-xo)
+🔗 [Code360 Profile](https://www.naukri.com/code360/profile/salmanxo)
+
+---
+
+⚡ This project demonstrates **cybersecurity awareness, risk mitigation, and secure log analysis** — showcasing skills relevant to **PwC Security Analyst roles**.
 
