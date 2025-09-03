@@ -1,0 +1,10 @@
+pynput
+cryptography
+pandas
+matplotlib
+
+#TO RUN ON VENV
+#python3 -m venv venv
+#source venv/bin/activate
+#pip install -r requirements.txt
+

