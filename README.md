@@ -113,5 +113,4 @@ National Institute of Technology, Durgapur
 
 ---
 
-⚡ This project demonstrates **cybersecurity awareness, risk mitigation, and secure log analysis** — showcasing skills relevant to **PwC Security Analyst roles**.
 
