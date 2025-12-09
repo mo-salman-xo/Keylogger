@@ -7,19 +7,19 @@ It securely logs keystrokes, encrypts them, and provides a **Flask-based SIEM-st
 
 ---
 
-## ✨ Features
+## Features
 <img width="936" height="508" alt="image" src="https://github.com/user-attachments/assets/f42c7a28-48fe-4660-aa49-c60f59f808cd" />
 
 
-* ✅ **Cross-Platform Keylogger** (macOS, Windows, Linux) using `pynput`
-* ✅ **AES Encrypted Logs** stored in **SQLite** with `cryptography`
-* ✅ **Web Dashboard (Flask)**:
+* **Cross-Platform Keylogger** (macOS, Windows, Linux) using `pynput`
+* **AES Encrypted Logs** stored in **SQLite** with `cryptography`
+* **Web Dashboard (Flask)**:
   * Real-time log viewer (auto-refresh every 5 seconds)
   * Search & filter by app/keyword
   * 🚨 Sensitive keyword detection & highlighting
   * Toggle to view **only sensitive logs**
-* ✅ **Resilient Design**: Handles anomalies like fast typing & backspace edits
-* ✅ **Practical Use Case**: Demonstrates how **SIEM dashboards** monitor sensitive user actions
+* **Resilient Design**: Handles anomalies like fast typing & backspace edits
+* **Practical Use Case**: Demonstrates how **SIEM dashboards** monitor sensitive user actions
 
 ---
 
