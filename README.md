@@ -8,7 +8,8 @@ It securely logs keystrokes, encrypts them, and provides a **Flask-based SIEM-st
 ---
 
 ## ✨ Features
-![Uploading image.png…]()
+<img width="936" height="508" alt="image" src="https://github.com/user-attachments/assets/f42c7a28-48fe-4660-aa49-c60f59f808cd" />
+
 
 * ✅ **Cross-Platform Keylogger** (macOS, Windows, Linux) using `pynput`
 * ✅ **AES Encrypted Logs** stored in **SQLite** with `cryptography`
