@@ -16,7 +16,7 @@ It securely logs keystrokes, encrypts them, and provides a **Flask-based SIEM-st
 * **Web Dashboard (Flask)**:
   * Real-time log viewer (auto-refresh every 5 seconds)
   * Search & filter by app/keyword
-  * 🚨 Sensitive keyword detection & highlighting
+  * Sensitive keyword detection & highlighting
   * Toggle to view **only sensitive logs**
 * **Resilient Design**: Handles anomalies like fast typing & backspace edits
 * **Practical Use Case**: Demonstrates how **SIEM dashboards** monitor sensitive user actions
