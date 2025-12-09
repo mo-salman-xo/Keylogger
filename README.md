@@ -1,9 +1,9 @@
-# 🔐 Security Awareness & Keylogging Simulation Tool
+# Security Awareness & Keylogging Simulation Tool
 
 This project is a **cybersecurity awareness tool** that simulates keylogging attacks for educational purposes.
 It securely logs keystrokes, encrypts them, and provides a **Flask-based SIEM-style dashboard** to analyze, search, and flag sensitive inputs in real time.
 
-⚠️ **Disclaimer:** This project is strictly for **educational and security awareness purposes**. Unauthorized use of keyloggers is illegal.
+**Disclaimer:** This project is strictly for **educational and security awareness purposes**. Unauthorized use of keyloggers is illegal.
 
 ---
 
@@ -23,7 +23,7 @@ It securely logs keystrokes, encrypts them, and provides a **Flask-based SIEM-st
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 Keylogger_Project/
@@ -37,23 +37,23 @@ Keylogger_Project/
 
 ---
 
-## 🚀 Setup & Installation
+## Setup & Installation
 
-### 1️⃣ Clone Repository
+### 1. Clone Repository
 
 ```bash
 git clone https://github.com/your-username/keylogger-project.git
 cd keylogger-project
 ```
 
-### 2️⃣ Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 pip install flask
 ```
 
-### 3️⃣ Run Keylogger
+### 3. Run Keylogger
 
 ```bash
 python3 keylogger.py
@@ -63,7 +63,7 @@ python3 keylogger.py
 * Type in any app (Chrome, Notes, etc.)
 * Quit with **Esc**
 
-### 4️⃣ Run Web Dashboard
+### 4. Run Web Dashboard
 
 ```bash
 python3 web_viewer.py
@@ -77,7 +77,7 @@ Visit 👉 **[http://127.0.0.1:5000](http://127.0.0.1:5000)**
 
 ---
 
-## 🔎 Sensitive Keywords
+## Sensitive Keywords
 
 The system flags keystrokes that form sensitive words such as:
 
@@ -88,7 +88,7 @@ The system flags keystrokes that form sensitive words such as:
 
 ---
 
-## 📸 Demo Preview
+## Demo Preview
 
 Here’s a sample mockup of the web dashboard:
 <img width="1465" height="845" alt="Screenshot 2025-09-03 at 2 26 48 PM" src="https://github.com/user-attachments/assets/a4de8e7e-e501-4be2-8171-e9b8169a01ad" />
@@ -97,7 +97,7 @@ Here’s a sample mockup of the web dashboard:
 
 ---
 
-## 👨‍💻 About the Author
+## About the Author
 
 **Mohammad Salman Ali**
 Final Year B.Tech – Computer Science & Engineering
@@ -105,9 +105,6 @@ National Institute of Technology, Durgapur
 
 * 🎓 **Google Cybersecurity Professional Certificate**
 * 🛡️ Aspiring **Security Analyst** with focus on SIEM, IDS, vulnerability assessment
-* 📊 Led **AI/ML & Cybersecurity workshops** (Centre for Cognitive Activities, NIT Durgapur)
-* 🎭 Leadership roles in **RECSTACY & AAROHAN** (flagship fests of NIT Durgapur)
-* 🏅 CBSE Chemistry Topper (Oman), Inter-NIT Handball Vice Captain
 
 🔗 [LinkedIn](https://www.linkedin.com/in/mohdsalmanali/)
 🔗 [GitHub](https://github.com/mo-salman-xo)
