@@ -97,19 +97,4 @@ Here’s a sample mockup of the web dashboard:
 
 ---
 
-## About the Author
-
-**Mohammad Salman Ali**
-Final Year B.Tech – Computer Science & Engineering
-National Institute of Technology, Durgapur
-
-* 🎓 **Google Cybersecurity Professional Certificate**
-* 🛡️ Aspiring **Security Analyst** with focus on SIEM, IDS, vulnerability assessment
-
-🔗 [LinkedIn](https://www.linkedin.com/in/mohdsalmanali/)
-🔗 [GitHub](https://github.com/mo-salman-xo)
-🔗 [Code360 Profile](https://www.naukri.com/code360/profile/salmanxo)
-
----
-
 
